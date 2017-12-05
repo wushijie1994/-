@@ -1,0 +1,98 @@
+@charset "utf-8";
+/**
+* @version:	 		    2017.07.12
+* @createTime: 	 		2017.07.12
+* @updateTime: 			2017.07.12
+* @author:				xieyq
+* @name:  				common
+* @description          common  style，这里是通用的组合样式，基本上只会用一次（自己灵活运用）
+*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+.fd-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/*** 地图 ***/
+.fd-map-wrapper {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #c0e5f1;
+}
+.layer g {
+  overflow: visible;
+}
+.layer g path {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: fill .2s, stroke .2s;
+  cursor: pointer;
+}
+.layer g:hover path {
+  stroke-width: .1px;
+  stroke: #237dd7;
+  fill: #237dd7;
+}
+.layer g:hover text {
+  fill: #fff;
+}
+/*.layer text {
+    position: relative;
+    z-index: 999;
+    text-anchor: middle;
+    alignment-baseline: middle;
+    stroke-width: 0;
+    fill: #1a6bbc;
+    cursor: pointer;
+    font-family: '微软雅黑';
+}*/
+.mapLevel3 .level1 {
+  fill: #ccc;
+}
+.mapLevel3 .level2 {
+  fill: #ccc;
+}
+.mapLevel2 .level1 {
+  fill: #ccc;
+}
+/*** 法院提示 ***/
+.fd-court-tip {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 10px;
+  font: 12px/30px "Microsoft Yahei";
+  color: #333;
+  border-radius: 3px;
+  background-color: #fff;
+}
+/*** 返回按钮 ***/
+.fd-back {
+  display: none;
+  position: absolute;
+  bottom: 100px;
+  left: 50px;
+  width: 66px;
+  height: 66px;
+  background: url(../images/icon-back.png) 0 0 no-repeat;
+}
+.fd-back:hover {
+  background-image: url(../images/icon-back-hover.png);
+}
+/*** 下载按钮 ***/
+.fd-download {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font: 14px/30px "Microsoft Yahei";
+  color: #1a6bbc;
+}

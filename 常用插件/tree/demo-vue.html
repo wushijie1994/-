@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期控件</title>
+    <!-- build:css ../css/main.css -->
+    <link href="css/tree.css" rel="stylesheet" media="screen">
+    <!-- endbuild -->
+    <style>
+        .fd-tree-contain{
+            height:300px;
+        }
+        html,body{
+            height:100%;
+        }
+        .fd-waper{
+            width: 100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+<div class="fd-waper" id="jsTreeTest">
+<component-tree
+        :tree-contain-id="treeNav.treeContainId"
+        :id="treeNav.id"
+        :url="treeNav.url"
+        :class-name="treeNav.className"
+        :slide-tree="treeNav.slideTree"
+        :options="treeNav.options"
+        :callback="treeNav.callback"></component-tree>
+</div>
+<div class="fd-tree-contain  fd-tree-contain-max"   id="jsTreeContainMax" >
+    <ul class="fd-nav-tree-line" id="jsTreeMax"></ul>
+    <div class="fd-scroll-track fd-scroll-track-max"></div>
+</div>
+
+<script type="text/javascript" src="js/jQuery.v1.11.1.min.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/tree.js"></script>
+<script>
+    //组件
+    Vue.component('component-tree', {
+        props: {
+            //树结构的参数
+            options:{
+                type:Object,
+                required:true
+            },
+            //创建树的ID
+            id:{
+                type:String,
+                required:true
+            },
+            //树结构的外层id
+            treeContainId:{
+                type:String,
+                required:true
+            },
+            //树的样式名称
+            className:{
+                type:String,
+                required:true
+            },
+            //树节点的数据来源
+            url:{
+                type:String,
+                required:true
+            },
+            //是否是下拉树，因为要计算滚动高度，所以要特殊处理
+            slideTree:{
+                type:Boolean,
+            },
+            //树创建后的回调函数，比如默认选中之类的
+            callback:{
+                type:Function
+            }
+        },
+        template: '<div class="fd-tree-contain" :id="scope.treeContainId">'+
+        '<ul class=" fd-tree" :class="scope.className" :id="scope.id"></ul>'+
+        '<div class="fd-scroll-track fd-scroll-track-max"></div>'+
+        '</div>',
+        data: function () {
+            return {
+                scope:{
+                    options:this.options,
+                    id:this.id,
+                    treeContainId:this.treeContainId,
+                    url:this.url,
+                    className:this.className,
+                    slidetree:this.slidetree,
+                    callback:this.callback
+                }
+            }
+        },
+        methods: {
+            //合并参数
+            getOptions: function (options) {
+                var _this=this;
+                var   _defaultOptions = {
+                    showLog : false, // 是否显示日志
+                    key : 'id', //   数据id    注意千万不要用驼峰命名，就算是驼峰命名最后取值也是小写的
+                    parentKey : 'pId', // 父元素id
+                    name : 'fyjc', // 数组的中文展示    (辖区名称)
+                    childKey : 'children', // 子元素
+                    data : [], //  数据对象为数组
+                    cache : false, //  是否缓存数据
+                    cacheId : 'wTreeMinLocalStorage', //  如果需要缓存，那么请设置换粗id默认
+                    itemIdPrefix : "fd-treeMax-", // 注意修改防止冲突
+                    operateItemClass : '.tree-hd',
+                    extendArea : false, // 是否扩大点击区域 默认为false
+                    hasIcon : true, //  有图标
+                    canSelected : true, // 可以选中
+                    slideLevel : 100000, // 展开层级
+                    hasHoverEffect : true,
+                    //  是否可以搜索
+                    canSearch : false,
+                    searchKey : ['id'], //  搜索的key值
+                    searchScrollTweenTime : 400, // 搜索滚动时间
+                    searchInput : '#jsSearch', //  搜索框id
+                    searchButton : '#jsBtnSearch', //  搜索按钮id
+                    limitCount : 5, // 提示条目数
+                    deferTime : 200, // 延迟显示
+                    isAutocompleter : true, //  自否自动完成
+                    hideAutocompleterClass : 'hide', //  自否自动完成
+                    menuSelectedClass : 'selected', // 数据条目选中的class
+                    autocompleterContain : '#jsAutocompleter',
+                    autocompleterIsAjax : false, //  是否是ajax加载数据
+                    // 滚动条参数
+                    hasScrollBar : true, // 是否有滚动条
+                    scrollBarContain : '.fd-scroll-track-max',
+                    scrollBarMinHeight : 50,
+                    treeContain : "#jsTreeContainMax",
+                    allowAppendNewNode : false, // 允许增加新的节点
+                    hasTips : false, //  是否有提示框
+                    // 回调函数
+                    callback : {
+                        appendNewNode : function (_this, event, target, _scope) {
+
+                        },
+                        onClick : function (_this, event, target, _scope) {
+                            //console.log("click");
+                        },
+                        onExpand : function (_this, event, target, _scope) {
+                            // console.log('展开的回调函数')
+                            _scope.scrollBar.update(20);
+                        },
+                        onCollapse : function (_this, event, target, _scope) {
+                            //   console.log('收起的回调函数')
+                            _scope.scrollBar.update(20);
+                        }
+                    }
+                };
+                //  合并参数
+                var  _options= $.extend(true,{},_defaultOptions,options||{});
+                _options.treeContain="#"+_this.scope.treeContainId;
+                //需要重新定义id
+                return  _options;
+            },
+            // 更新图表
+            update: function (_this) {
+            },
+            // 创建树
+            createTree: function () {
+                var _this=this;
+                var option=_this.getOptions(_this.scope.options);
+                _this.tree=$("#"+_this.scope.id).addTree(option);
+                //  更新树的数据，异步ajax
+                $.ajax({
+                    url : _this.scope.url,
+                    dataType : 'json',
+                    data : '',
+                    method : 'get',
+                    success : function (data) {
+                        var getNodes
+                        if(data.success){
+                            getNodes = data.result;
+                        }else{
+                            getNodes = data;
+                        }
+
+                        //克隆对象函数
+                        function coloneNodes() {
+                            var coloneNodes = JSON.stringify(getNodes);
+                            return JSON.parse(coloneNodes);
+                        }
+                        //  大树
+                        var treeMaxCacheId = _this.tree.opts.cacheId + _this.tree._this.attr('id');
+                        if (!window.localStorage.getItem(treeMaxCacheId)) {
+                            var treeMaxNodes = coloneNodes();
+                            // 默认第一个不能缩起
+                            // treeMaxNodes.disabled = true;
+                            // 更新数据
+                            //下拉树没有这个不能生成滚动条
+                            if(_this.scope.slidetree){
+                                $("#"+_this.scope.id).parents(".js-drop-menu").css({
+                                    display:"block",
+                                    opacity:"0",
+                                })
+                                _this.tree.update(treeMaxNodes);
+                                _this.tree.scrollBar.update(20,0);
+                                setTimeout(function(){
+                                    $("#"+_this.scope.id).parents(".js-drop-menu").removeAttr("style");
+                                },500);
+                            }else{
+                                _this.tree.update(treeMaxNodes);
+                            }
+                            if(_this.scope.callback){
+                                _this.scope.callback();
+                            }
+
+                            // 设置能被选中的节点  2级以下的不能被选中
+                            //_this.tree.setWhatItemCanSelected(option.canSelected);
+                            // 最高人民法院不能选择
+                            //   $('#fd-treeMax-990000').attr('canselected', 'false');
+                        }
+                    }
+                });
+            },
+            // 初始化函数
+            init: function () {
+                var _this=this;
+                // 创建树
+                _this.createTree();
+            }
+        },
+        mounted: function () {
+            var  _this=this;
+            // 初始化
+            _this.init();
+        }
+    });
+
+    var _vm = new Vue({
+        el: "#jsTreeTest",
+        data:{
+            treeNav:{
+                treeContainId:"jsTreeContainMax",//外层id
+                id:"jsNavtree",//树的Id
+                url : "json/details/tree.json",//数结构的地址
+                className:"fd-nav-tree-default blue",//样式
+                slideTree:false,//不是下拉树
+                options:{
+                    showLog : false, // 是否显示日志
+                    key : 'mapId', //   数据id    注意千万不要用驼峰命名，就算是驼峰命名最后取值也是小写的
+                    parentKey : 'pId', // 父元素id
+                    name : 'fyjc', // 数组的中文展示    (辖区名称)
+                    childKey : 'children', // 子元素
+                    data : [], //  数据对象为数组
+                    cache : false, //  是否缓存数据
+                    cacheId : 'wTreeMinLocalStorage', //  如果需要缓存，那么请设置换粗id默认
+                    itemIdPrefix : "fd-treeMax-", // 注意修改防止冲突
+                    operateItemClass : '.tree-hd',
+                    extendArea : false, // 是否扩大点击区域 默认为false
+                    hasIcon : true, //  有图标
+                    canSelected : true, // 可以选中
+                    hasHoverEffect : true,
+                    //  是否可以搜索
+                    canSearch : false,
+                    searchKey : ['id'], //  搜索的key值
+                    searchScrollTweenTime : 400, // 搜索滚动时间
+                    searchInput : '#jsSearch', //  搜索框id
+                    searchButton : '#jsBtnSearch', //  搜索按钮id
+                    limitCount : 5, // 提示条目数
+                    deferTime : 200, // 延迟显示
+                    isAutocompleter : true, //  自否自动完成
+                    hideAutocompleterClass : 'hide', //  自否自动完成
+                    menuSelectedClass : 'selected', // 数据条目选中的class
+                    autocompleterContain : '#jsAutocompleter',
+                    autocompleterIsAjax : false, //  是否是ajax加载数据
+                    // 滚动条参数
+                    hasScrollBar : true, // 是否有滚动条
+                    scrollBarContain : '.fd-scroll-track-max',
+                    scrollBarMinHeight : 50,
+                    treeContain : "#jsTreeContainMax",
+                    allowAppendNewNode : false, // 允许增加新的节点
+                    hasTips : false, //  是否有提示框
+                    // 回调函数
+                    callback : {
+                        appendNewNode : function (_this, event, target, _scope) {
+
+                        },
+                        onClick : function (_this, event, target, _scope) {
+                        },
+                        onExpand : function (_this, event, target, _scope) {
+                            _scope.scrollBar.update(20);
+                        },
+                        onCollapse : function (_this, event, target, _scope) {
+                            _scope.scrollBar.update(20);
+                        }
+                    }
+                },
+                callback: function () {
+                    //默认选中第一个
+                    $(".tree-hd[data-mapid=000000]").get(0).click();
+                    //最高不可点
+                    $('#fd-treeMax-990000').attr('canselected', 'false');
+                }
+            },
+        },
+        // 方法
+        methods: {},
+        // 更新数据后调用该函数
+        updated: function () {},
+        //  dom插入后调用该函数
+        mounted: function () {},
+        //  vm创建后调用该函数
+        created: function () {}
+    });
+
+</script>
+</body>
+</html>

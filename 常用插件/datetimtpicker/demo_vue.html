@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue中datetimepicker的使用</title>
+    <!-- build:css ../css/main.css -->
+    <link href="css/datetimepicker.css" rel="stylesheet" media="screen">
+    <!-- endbuild -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font: 14px/20px "Microsoft Yahei";
+            color: #333;
+            background-color: #fff;
+        }
+
+        /*** 容器样式 ***/
+        .fd-container {
+            margin: 0 auto;
+            width: 1170px;
+        }
+
+        /*** 表单样式 ***/
+        .fd-form {
+
+        }
+
+        .fd-form fieldset {
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+
+        .fd-form legend {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 0;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 21px;
+            line-height: 40px;
+        }
+
+        /*** 控制组 ***/
+        .fd-control-group {
+            margin-bottom: 20px;
+        }
+
+        /*** 页签 ***/
+        .fd-control-label {
+            display: block;
+            float: left;
+            margin-bottom: 5px;
+            width: 160px;
+            padding-top: 5px;
+            text-align: right;
+        }
+
+        /*** 控制容器 ***/
+        .fd-controls {
+            margin-left: 180px;
+            font-size: 0;
+            white-space: nowrap;
+        }
+
+        .fd-controls,
+        .fd-controls input {
+            display: inline-block;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        /*** input输入框 ***/
+        .fd-controls input {
+            position: relative;
+            margin-right: 8px;
+            border: 1px solid #cccccc;
+            padding: 4px 6px;
+            width: 206px;
+            height: 20px;
+            line-height: 20px;
+            color: #555;
+            border-radius: 4px 0 0 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            background-color: #eeeeee;
+        }
+
+        /*** 按钮 ***/
+        .fd-add-on {
+            display: inline-block;
+            margin-left: -1px;
+            border: 1px solid #ccc;
+            width: auto;
+            height: 20px;
+            min-width: 16px;
+            padding: 4px 5px;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 20px;
+            text-align: center;
+            vertical-align: top;
+            border-radius: 0;
+            text-shadow: 0 1px 0 #ffffff;
+            background-color: #eee;
+        }
+
+        [class^="fd-icon-"] {
+            display: inline-block;
+            margin-top: 1px;
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            vertical-align: top;
+            background-image: url(images/glyphicons-halflings.png);
+            background-position: 14px 14px;
+            background-repeat: no-repeat;
+        }
+
+        /*** 清空的按钮样式 ***/
+        .fd-icon-remove {
+            background-position: -312px 0;
+        }
+
+        /*** 日期按钮的样式 ***/
+        .fd-icon-th {
+            background-position: -240px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- 容器 -->
+<div class="fd-container" id="container">
+    <!--  表单 -->
+    <form action="" class="fd-form">
+        <fieldset>
+            <legend>vue中日历控件的应用</legend>
+            <!-- 条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">显示到分钟的日历</label>
+                <datetime-picker :date="timeDate" :datepicker-options="timeDateOptions" @change="timeDateChange" :on-change="timeOnChange" :has-component="timeHasComponent"></datetime-picker>
+            </div>
+            <!-- fd-control-group 条件组 end -->
+            <!-- 条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">input框的日历控件</label>
+                <datetime-picker :date="date" :datepicker-options="dateOptions" @change="dateChange" :on-change="onChange"></datetime-picker>
+            </div>
+
+            <!-- 条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">开始日期至结束日期</label>
+                <datetime-picker :date="startDate" :datepicker-options="dateOptions" @change="startDateChange" :on-change="startDateOnChange"></datetime-picker>
+                <datetime-picker :date="endDate" :datepicker-options="dateOptions" @change="endDateChange" :on-change="endDateOnChange"></datetime-picker>
+            </div>
+        </fieldset>
+    </form>
+    <!-- fd-form end -->
+</div>
+<!-- fd-container end -->
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/datetimepicker.js"></script>
+<script type="text/javascript" src="js/app/common/global.js"></script>
+<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="js/vue/vue.js"></script>
+<script type="text/javascript">
+
+    Vue.component('datetime-picker', {
+        template: '<div class="fd-controls" :class="{\'date\': hasComponent}">'
+                        + '<input v-bind:value="date">'
+                        + '<span class="fd-add-on" v-if="hasComponent"><i class="fd-icon-remove"></i></span>'
+                        +'<span class="fd-add-on" v-if="hasComponent"><i class="fd-icon-th"></i></span>'
+                    +'</div>',
+        props: {
+            date: {
+                type: String,
+                default: ''
+            },
+            datepickerOptions: {
+                type: Object,
+                default: function () {
+                    return {};
+                }
+            },
+            onChange: {
+                required: false,
+                default: null
+            },
+            //是否有组件
+            hasComponent: {
+                type: Boolean,
+                default: false
+            },
+            //是否有组件重置
+            hasRest: {
+                type: Boolean,
+                default: false
+            }
+        },
+        methods: {},
+        mounted: function () {
+            var _this = this;
+            //获取日历控件元素，如果有组件就是对应的div上添加日历控件，如果没有组件就在对应的input元素上添加
+            var $datetimepickerEle = _this.hasComponent ? $(_this.$el) : $(_this.$el).find('input');
+            //创建日期控件
+            $datetimepickerEle.datetimepicker(this.datepickerOptions).on('changeDate', function (e) {
+                var dateValue = '';
+                var element = $datetimepickerEle;
+                //如果是input元素直接绑定日历控件，则直接获取input的值，如果是父级，则获取子集input的值
+                if (element.is('input')) {
+                    dateValue = element.val();
+                } else if (element.is('.date') && element.find('input').length) {
+                    dateValue = element.find('input').val();
+                }
+                _this.$emit('change', dateValue);
+                if (_this.onChange) {
+                    _this.onChange(e);  //触发回调函数
+                }
+            });
+        }
+    });
+
+    var vm = new Vue({
+        el: '#container',
+        data: {
+            date: '2017-06-30',
+            dateOptions: {
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                startDate: '2017-01-01',    //设置最小日期
+                endDate: '2017-06-30',      //设置最大日期
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2, //Number, String. 默认值：0, 'hour' 日期时间选择器所能够提供的最精确的时间选择视图。
+                forceParse: true
+            },
+            hasComponent: true,
+            //时间的日期
+            timeDate: '2017-06-01',
+            //时间的日期参数
+            timeDateOptions: {
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                startDate: '2017-01-01',    //设置最小日期
+                endDate: '2017-06-30',      //设置最大日期
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2, //Number, String. 默认值：0, 'hour' 日期时间选择器所能够提供的最精确的时间选择视图。
+                forceParse: true
+            },
+            //时间是否是组件
+            timeHasComponent: true,
+            startDate: '2017-06-01',
+            endDate: '2017-06-30'
+        },
+        methods: {
+            getCurrentDate: function () {
+                console.log(this.date);
+            },
+            /*
+             * 子组件传过来日期改变的值
+             * */
+            dateChange: function (value) {
+                this.date = value;
+            },
+            //日期改变的回调函数
+            onChange: function(event) {
+                console.log(event.date.valueOf());
+            },
+            //时间日期改变
+            timeDateChange: function(value) {
+                this.timeDate = value;
+            },
+            //时间日期改变的回调函数
+            timeOnChange: function(event) {
+                console.log(event.date.valueOf());
+            },
+            /*
+            * 开始日期改变
+            * */
+            startDateChange: function(value) {
+                this.startDate = value;
+            },
+            /*
+            * 结束日期改变
+            * */
+            endDateChange: function(value) {
+                this.endDate = value;
+            },
+            /*
+            * 开始日期改变的回调函数
+            * */
+            startDateOnChange: function(event) {
+                //如果开始日期大于结束日期
+                if(event.date.valueOf() > new Date(this.endDate).valueOf()) {
+                    this.endDate = this.startDate;  //则设置结束日期等于开始日期
+                }
+            },
+            endDateOnChange: function(event) {
+                //如果结束日期小于开始日期
+                if(event.date.valueOf() < new Date(this.startDate).valueOf()) {
+                    this.startDate = this.endDate;  //则设置开始日期等于结束日期
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

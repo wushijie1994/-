@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期控件</title>
+    <!-- build:css ../css/main.css -->
+    <link href="css/datetimepicker.css" rel="stylesheet" media="screen">
+    <!-- endbuild -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font: 14px/20px "Microsoft Yahei";
+            color: #333;
+            background-color: #fff;
+        }
+        /*** 容器样式 ***/
+        .fd-container {
+            margin: 0 auto;
+            width: 1170px;
+        }
+        /*** 表单样式 ***/
+        .fd-form {
+
+        }
+        .fd-form fieldset {
+            margin: 0;
+            border: 0;
+            padding: 0;
+        }
+        .fd-form legend {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 0;
+            border-bottom: 1px solid #e5e5e5;
+            font-size: 21px;
+            line-height: 40px;
+        }
+        /*** 控制组 ***/
+        .fd-control-group {
+            margin-bottom: 20px;
+        }
+        /*** 页签 ***/
+        .fd-control-label {
+            display: block;
+            float: left;
+            margin-bottom: 5px;
+            width: 160px;
+            padding-top: 5px;
+            text-align: right;
+        }
+        /*** 控制容器 ***/
+        .fd-controls {
+            margin-left: 180px;
+            font-size: 0;
+            white-space: nowrap;
+        }
+        .fd-controls,
+        .fd-controls input {
+            display: inline-block;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+        /*** input输入框 ***/
+        .fd-controls input {
+            position: relative;
+            border: 1px solid #cccccc;
+            padding: 4px 6px;
+            width: 206px;
+            height: 20px;
+            line-height: 20px;
+            color: #555;
+            border-radius: 4px 0 0 4px;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+            background-color: #eeeeee;
+        }
+        /*** 按钮 ***/
+        .fd-add-on {
+            display: inline-block;
+            margin-left: -1px;
+            border: 1px solid #ccc;
+            width: auto;
+            height: 20px;
+            min-width: 16px;
+            padding: 4px 5px;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 20px;
+            text-align: center;
+            vertical-align: top;
+            border-radius: 0;
+            text-shadow: 0 1px 0 #ffffff;
+            background-color: #eee;
+        }
+        [class^="fd-icon-"] {
+            display: inline-block;
+            margin-top: 1px;
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            vertical-align: top;
+            background-image: url(images/glyphicons-halflings.png);
+            background-position: 14px 14px;
+            background-repeat: no-repeat;
+        }
+        /*** 清空的按钮样式 ***/
+        .fd-icon-remove {
+            background-position: -312px 0;
+        }
+        /*** 日期按钮的样式 ***/
+        .fd-icon-th {
+            background-position: -240px 0;
+        }
+    </style>
+</head>
+<body>
+<!-- 容器 -->
+<div class="fd-container">
+    <!--  表单 -->
+    <form action="" class="fd-form">
+        <fieldset>
+            <legend>测试1</legend>
+            <!-- 条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">显示到分钟的日历</label>
+                <!-- 如果日历控件加载div上，则需要添加date class 类名 -->
+                <div class="fd-controls date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="yyyy-mm-dd HH:ii p" data-link-field="dtp_input1">
+                    <input size="16" type="text" value="" readonly>
+                    <!-- 重置按钮 需要按照下面的命名方式-->
+                    <span class="fd-add-on"><i class="fd-icon-remove"></i></span>
+                    <!-- 组件按钮，点击出现日历 需要按照下面的命名方式-->
+                    <span class="fd-add-on"><i class="fd-icon-th"></i></span>
+                </div>
+                <!-- 对应的data-link-field -->
+                <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+            <!-- fd-control-group 条件组 end -->
+            <!-- 日期条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">到天的日历</label>
+                <div class="fd-controls date form_date" data-date="" data-date-format="yyyy年mm月dd日" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="fd-add-on"><i class="fd-icon-remove"></i></span>
+                    <span class="fd-add-on"><i class="fd-icon-th"></i></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+            <!-- fd-control-group 日期条件组 end -->
+            <!-- 日期条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">只显示时间的日历</label>
+                <div class="fd-controls date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="fd-add-on"><i class="fd-icon-remove"></i></span>
+                    <span class="fd-add-on"><i class="fd-icon-th"></i></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value="" /><br/>
+            </div>
+            <!-- fd-control-group 日期条件组 end -->
+            <!-- 日期条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">年份月份的日历</label>
+                <div class="fd-controls date form_month" data-date="" data-date-format="yyyy-mm" data-link-field="dtp_input4" data-link-format="yyyy-mm">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="fd-add-on"><i class="fd-icon-remove"></i></span>
+                    <span class="fd-add-on"><i class="fd-icon-th"></i></span>
+                </div>
+                <input type="hidden" id="dtp_input4" value="" /><br/>
+            </div>
+            <!-- fd-control-group 日期条件组 end -->
+            <!-- 日期条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">小时的日历</label>
+                <div class="fd-controls date form_hours" data-date="" data-date-format="yyyy-mm-dd hh" data-link-field="dtp_input5" data-link-format="yyyy-mm-dd hh">
+                    <input size="16" type="text" value="" readonly>
+                    <span class="fd-add-on"><i class="fd-icon-remove"></i></span>
+                    <span class="fd-add-on"><i class="fd-icon-th"></i></span>
+                </div>
+                <input type="hidden" id="dtp_input5" value="" /><br/>
+            </div>
+            <!-- fd-control-group 日期条件组 end -->
+            <!-- 日期条件组 -->
+            <div class="fd-control-group">
+                <label class="fd-control-label">input上的到天的日历</label>
+                <div class="fd-controls">
+                    <input size="16" type="text" value="2017-06-30" class="js-input-day"  data-date="2017-06-30" data-date-format="yyyy-mm-dd">
+                </div>
+            </div>
+            <!-- fd-control-group 日期条件组 end -->
+        </fieldset>
+    </form>
+    <!-- fd-form end -->
+</div>
+<!-- fd-container end -->
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/datetimepicker.js"></script>
+<script type="text/javascript" src="js/app/common/global.js"></script>
+<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript">
+    //到分钟日期时间日历
+    $('.form_datetime').datetimepicker({
+        language:  'zh-CN',     //语言
+        weekStart: 1,   //一周从哪一天开始。0（星期日）到6（星期六）
+        todayBtn:  1,   //Boolean "linked" 默认false 为true或者"linked"，则在日期时间选择器组件的底部显示一个 "Today" 按钮用以选择当前日期。如果是true的话，"Today" 按钮仅仅将视图转到当天的日期，如果是"linked"，当天日期将会被选中
+        autoclose: 1,   //Boolean.默认false 当选择一个日期之后是否立即关闭此日期时间选择器。
+        todayHighlight: 1,  //Boolean. 默认值: false 如果为true, 高亮当前日期。
+        startView: 2,   //Number, String. 默认值：2, 'month' 日期时间选择器打开之后首先显示的视图。 可接受的值： 0 or 'hour' for the hour view; 1 or 'day' for the day view;2 or 'month' for month view (the default);3 or 'year' for the 12-month overview;4 or 'decade' for the 10-year overview. Useful for date-of-birth datetimepickers.
+        minuteStep: 1, //Number. 默认值: 5 此数值被当做步进值用于构建小时视图。对于每个 minuteStep 都会生成一组预设时间（分钟）用于选择。
+        forceParse: 0,  //Boolean. 默认值: true 当选择器关闭的时候，是否强制解析输入框中的值。也就是说，当用户在输入框中输入了不正确的日期，选择器将会尽量解析输入的值，并将解析后的正确值按照给定的格式format设置到输入框中。
+        showMeridian: 1 //Boolean. 默认值: false 此选项将启用子午视图以查看日期和时段
+    });
+    //到天日期日历
+    $('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2, //Number, String. 默认值：0, 'hour' 日期时间选择器所能够提供的最精确的时间选择视图。
+        forceParse: true
+    });
+    //只显示时间的日期
+    $('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 1,
+        minView: 0,
+        maxView: 1, //Number, String. 默认值：4, 'decade' 日期时间选择器最高能展示的选择范围视图。
+        forceParse: 0
+    });
+    //只显示月份的日期
+    $('.form_month').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 0,
+        todayBtn:  false,
+        autoclose: true,
+        todayHighlight: false,
+        startView: 3,
+        minView: 3,
+        maxView: 4,
+        forceParse: 0
+    });
+    //显示到小时的日期
+    $('.form_hours').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 0,
+        todayBtn:  false,
+        autoclose: true,
+        todayHighlight: false,
+        startView: 1,
+        minView: 1,
+        maxView: 4,
+        forceParse: 0
+    });
+    //显示到天的日历
+    $('.js-input-day').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+        autoclose: 1,
+        startDate: '2017-01-01',    //设置最小日期
+        endDate: '2017-06-30',      //设置最大日期
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2, //Number, String. 默认值：0, 'hour' 日期时间选择器所能够提供的最精确的时间选择视图。
+        forceParse: true
+    });
+</script>
+</body>
+</html>

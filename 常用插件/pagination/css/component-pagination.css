@@ -1,0 +1,224 @@
+/**
+* @version:	 		    2016.11.01
+* @createTime: 	 		2016.11.23
+* @updateTime: 			2016.11.23
+* @author:				wuwg
+* @name:  				component-pagination
+* @rule                 fd-pagination {'fd-'+'组件名'}
+* @require              依赖reset.css   unit-button.css
+* @description          component search  style   这里是一个分页组件
+                         什么是组件？
+                         组件可能包含多个元件，然后形成一个组件，例如：一个汽车轮子，由元件钉子，轮胎等组件
+ */
+.fd-pagination .disabled{
+  cursor: default;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.fd-pagination {
+  float: right;
+  /*height: 22px;*/
+  height: 1.2222222222222223rem;
+  overflow: hidden;
+  color: #666d7b;
+  font-size: 0;
+  font-family: "microsoft yahei";
+  text-align: center;
+}
+.fd-pagination .fd-info,
+.fd-pagination .fd-operate span{
+  float: left;
+}
+.fd-pagination .fd-info,
+.fd-pagination .fd-info span{
+  /*line-height: 22px;*/
+  line-height: 1.2222222222222223rem;
+}
+.fd-pagination .fd-operate {
+  float: left;
+}
+.fd-pagination .fd-operate li {
+  float: left;
+  /*line-height: 20px;*/
+  line-height: 1.1111111111111112rem;
+}
+.fd-pagination .fd-infoItem{
+  float: left;
+  /*margin-right: 10px;*/
+  margin-right: 0.5555555555555556rem;
+}
+.fd-pagination .fd-infoItem:after{
+  content: "";
+  clear: both;
+}
+.fd-pagination .fd-infoItem em{
+  float: left;
+  /*font: 0.7777777777777778rem/1.2222222222222223rem "Microsoft YaHei ";*/
+    /*font-size: 0.7777777777777778rem;*/
+    font-size: 0.8888888888888888rem;
+    line-height: 1.2222222222222223rem;
+    font-family: "microsoft yahei";
+}
+
+.fd-pagination .fd-infoItem input{
+  float: left;
+}
+/*数字*/
+.fd-pagination .fd-prev,
+.fd-pagination .fd-page-count,
+.fd-pagination .fd-next{
+  /*margin: 0 10px;*/
+  margin: 0 0.5555555555555556rem;
+  /*height:22px;*/
+  height:1.2222222222222223rem;
+  text-align: center;
+  /*font-size: 14px;*/
+  /*font-size: 0.7777777777777778rem;*/
+  font-size: 0.8888888888888888rem;
+  font-family: "microsoft yahei";
+  color: #666d7b;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid #becfd9;
+  box-sizing: border-box;
+}
+
+
+.fd-pagination .fd-page-count:hover{
+    color: #697387;
+    border: 1px solid #46a2e6;
+    background-color: #bfdaf4;
+}
+.fd-pagination .fd-page-count.active{
+    color: #3a91cf;
+    border: 1px solid transparent;
+    background: none;
+}
+
+.fd-pagination .fd-page-count.point ,
+.fd-pagination .fd-page-count.point:hover {
+    color: #22d8f9;
+    text-decoration: none;
+}
+/***上一页，下一页***/
+.fd-pagination .fd-prev,
+.fd-pagination .fd-next,
+.fd-pagination .fd-first,
+.fd-pagination .fd-last{
+    position: relative;
+    /*font: 0.7777777777777778rem/1.1111111111111112rem "microsoft yahei";*/
+    /*font-size: 0.7777777777777778rem;*/
+    font-size: 0.8888888888888888rem;
+    line-height: 1.1111111111111112rem;
+    font-family: "microsoft yahei";
+    width: 1.3888888888888888rem;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 2px;
+    border: 1px solid #becfd9;
+}
+.fd-pagination .fd-prev:hover,
+.fd-pagination .fd-next:hover,
+.fd-pagination .fd-first:hover,
+.fd-pagination .fd-last:hover{
+    border: 1px solid #46a2e6;
+    background-color: #bfdaf4;
+}
+.fd-pagination .fd-gotoBox{
+    /*margin-left:20px;*/
+    margin-left:1.1111111111111112rem;
+}
+.fd-pagination .fd-gotoBox .fd-text{
+    float: left;
+    margin-right:0.5555555555555556rem;
+    /*font:14px/22px "microsoft yahei";*/
+    /*font:0.7777777777777778rem/1.2222222222222223rem "microsoft yahei";*/
+    /*font-size: 0.7777777777777778rem;*/
+    font-size: 0.8888888888888888rem;
+    line-height: 1.2222222222222223rem;
+    font-family: "microsoft yahei";
+}
+.fd-pagination input{
+    /*margin-right:6px;*/
+    margin-right:0.3333333333333333rem;
+    /*height:22px;*/
+    height:1.2222222222222223rem;
+    /*width:34px;*/
+    width:1.8888888888888888rem;
+    color:#666d7b;
+    /*font:14px/22px "microsoft yahei";*/
+    /*font:0.7777777777777778rem/1.2222222222222223rem "microsoft yahei";*/
+    font-size: 0.8888888888888888rem;
+    line-height: 1.2222222222222223rem;
+    font-family: "microsoft yahei";
+    text-align: center;
+    background: none;
+    border:1px solid #becfd9;
+    background: #fff;
+}
+.fd-pagination .fd-gotoInput{
+    float: left;
+}
+.fd-pagination .fd-gotoBox .fd-btn-goto{
+    float: left;
+    /*width:24px;*/
+    width:1.3333333333333333rem;
+    /*height:22px;*/
+    height:1.2222222222222223rem;
+    color:#fff;
+    /*font: 0.6666666666666666rem/1.2222222222222223rem "microsoft yahei";*/
+    font-size: 0.6666666666666666rem;
+    line-height: 1.2222222222222223rem;
+    font-family: "microsoft yahei";
+    text-align: center;
+    background: #46a2e6;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/*改变样式*/
+.fd-pagination .fd-text-page{
+    padding-right: 0.3333333333333333rem;
+    /*font-size: 14px;*/
+    font-size: 0.8888888888888888rem;
+    font-family: "microsoft yahei";
+    color: #666d7b;
+}
+.fd-pagination .fd-page-count{
+    margin: 0 3px;
+    /*width: 25px;*/
+    /*width: 1.3888888888888888rem;*/
+    padding:0 0.5rem;
+    background: #fff;
+}
+.fd-pagination .fd-next {
+    margin: 0 3px;
+}
+.fd-pagination .fd-last{
+    margin-left: 3px;
+}
+.fd-pagination .fd-first{
+    margin-right: 3px;
+}
+.fd-pagination .fd-first,.fd-pagination .fd-last,.fd-pagination .fd-prev,.fd-pagination .fd-next{
+    /*height:22px;*/
+    height:1.2222222222222223rem;
+    background-color: #fff;
+    background-image: url("../images/pagination/first.png");
+    /*background-size: 12px 12px;*/
+    background-size: 0.6666666666666666rem 0.6666666666666666rem;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+.fd-pagination .fd-last{
+    background-image: url("../images/pagination/last.png");
+}
+.fd-pagination .fd-prev{
+    background-image: url("../images/pagination/prev.png");
+}
+.fd-pagination .fd-next{
+    background-image: url("../images/pagination/next.png");
+}
