@@ -1,0 +1,4 @@
+一、核心函数
+    1、选择器
+        select()
+        selectAll()

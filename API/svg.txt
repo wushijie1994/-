@@ -1,0 +1,101 @@
+1:path方法
+	M	x,y	moveto	移动虚拟画笔到指定的（x,y）坐标，仅移动不绘制
+	L	x,y	lineto	从当前画笔所在位置绘制一条直线到指定的（x,y）坐标
+	H	x	horizontal lineto	绘制一条水平直线到参数指定的x坐标点，y坐标为画笔的y坐标
+	v	y	horizontal lineto	从当前位置绘制一条垂直直线到参数指定的y坐标，y坐标相对于当前画笔的y坐标
+	C	x1,y1 x2,y2 x,y	curveto	从当前画笔位置绘制一条三次贝兹曲线到参数（x,y）指定的坐标。x1，y1和x2,y2是曲线的开始和结束控制点，用于控制曲线的弧度
+	S	x2,y2 x,y	shorthand / smooth curveto	从当前画笔位置绘制一条三次贝兹曲线到参数（x,y）指定的坐标。x2,y2是结束控制点。开始控制点和前一条曲线的结束控制点相同
+	Q	x1,y1 x,y	二次贝兹曲线	从当前画笔位置绘制一条二次贝兹曲线到参数（x,y）指定的坐标。x1,y1是控制点，用于控制曲线的弧度
+	T	x,y	平滑的二次贝兹曲线	从当前画笔位置绘制一条二次贝兹曲线到参数（x,y）指定的坐标。控制点被假定为最后一次使用的控制点
+	A	rx,ry x-axis-rotation large-arc-flag,sweepflag x,y	椭圆弧线	从当前画笔位置开始绘制一条椭圆弧线到（x,y）指定的坐标。rx和ry分别为椭圆弧线水平和垂直方向上的半径。x-axis-rotation指定弧线绕x轴旋转的度数。它只在rx和ry的值不相同是有效果。large-arc-flag是大弧标志位，取值0或1，用于决定绘制大弧还是小弧。sweep-flag用于决定弧线绘制的方向
+	Z	无	闭合路径	从结束点绘制一条直线到开始点，闭合路径
+2：常见属性
+	a、文字
+		x属性决定文字的左边部位置（文字的开始位置），y属性决定文字的下边部位置（注意这里不是上边部）
+		文字的anchor决定哪个部分的文字放置在text元素中的x属性定义的位置。默认的anchor是文字左边部，即文字的开始处。你也可以将anchor设置为middle，使它位于文字的中间，设置为end，使它位于文字的右边。
+		SVG文字是没有自动换行功能的。你必须自己定位每一行文本。
+		text-anchor:文字对齐方式
+		
+		writing-mode:显示垂直文字
+		direction:设置文字的渲染方向
+		textLength属性来设置文字的长度
+		lengthAdjust属性你可以指定是否同时调整字符间距和符号的宽度
+		
+		
+		font-family	设置字体
+		font-size	设置文字大小
+		kerning	设置字距调整的值
+		letter-spacing	字母之间的间距
+		word-spacing	单词之间的间距
+		text-decoration	是否带下划线。可选值有：none、underline、overline和line-through
+		stroke	文字的描边颜色。默认文字只有填充色，没有描边，添加描边将使文字变粗
+		stroke-width	文字描边的宽度
+		fill	文字的填充色
+	b、css
+		fill	设置图形的填充颜色
+		fill-opacity	设置图形填充颜色的透明度
+		fill-rule	设置图形的填充规则
+		marker	设置这个图形上沿直线（边）使用的marker
+		marker-start	设置这个图形上沿直线（边）使用的开始marker
+		marker-mid	设置这个图形上沿直线（边）使用的中间marker
+		marker-end	设置这个图形上沿直线（边）使用的结束marker
+		stroke	设置图形的描边颜色
+		stroke-dasharray	设置使用虚线来对图形进行描边
+		stroke-dashoffset	设置图形描边虚线的偏移值
+		stroke-linecap	设置描边线条线头的类型。可选择有round, butt 和 square
+		stroke-miterlimit	设置描边的斜接限制
+		stroke-opacity	设置米哦啊吧的透明度
+		stroke-width	设置描边的宽度
+		text-rendering	设置描边的text-rendering属性
+	c、strock
+		stroke-linecap CSS属性用于定义图形描边中线条头部的渲染样式
+		stroke-linejoin CSS属性定义图形在渲染时两条相连的线如何连接。
+		stroke-dasharray CSS属性用于绘制图形的虚线描边
+		stroke-dashoffset CSS属性用于指定从多远开始执行指定的虚线模式。
+		stroke-opacity CSS属性用于定义图形描边的透明度。、
+	d、径向渐变
+		id	用于在图形上引用该渐变的唯一标识符
+		cx,cy	径向渐变的中心点X和Y坐标。它的值使用用填充的百分比值。如果没有定义则默认值为50%
+		fx, fy	径向渐变的焦点X和Y值。它的值使用用填充的百分比值。如果没有定义则默认值为50%。
+		注意：在Firefox 3.05中如果值低于5%可能会发生问题。
+		r	径向渐变的半径
+		spreadMethod	定义径向渐变的传播方式。可取值有3个：pad，repeat和reflect。pad是指开始和结束颜色平铺填充整个渐变。repeat是指渐变在整个图形中不断重复。reflect是指渐变在图形中会镜像显示。这个参数只有在渐变没有填充满整个图形时才有效果。
+		gradientTransform	可以使用该参数在应用一个渐变之前对其进行转换（如旋转）
+		gradientUnits	设置计算 x1, y1 和 x2,y2的方式
+		xlink:href	设置这个渐变继承自另一个渐变，取值为另一个渐变的ID号。换句话说，如果这个渐变没有设置其它属性值，它将使用ID指向的那个渐变作为默认的渐变
+	e、线性渐变
+		id	渐变的唯一ID号，用于在图形中引用该渐变
+		x1, y1	x1, y1定义渐变的起点。使用的是百分比数值
+		x2, y2	x2, y2定义渐变的终点。使用的是百分比数值
+		spreadMethod	这个参数定义渐变的传播方式。可取值有3个：pad，repeat和reflect。pad是指开始和结束颜色平铺填充整个渐变。repeat是指渐变在整个图形中不断重复。reflect是指渐变在图形中会镜像显示。这个参数只有在渐变没有填充满整个图形时才有效果。（可以参看<stop>元素的offset属性）
+		gradientTransform	可以使用该参数在应用一个渐变之前对其进行转换（如旋转）
+		gradientUnits	设置计算 x1, y1 和 x2,y2的方式
+		xlink:href	设置这个渐变继承自另一个渐变，取值为另一个渐变的ID号。换句话说，如果这个渐变没有设置其它属性值，它将使用ID指向的那个渐变作为默认的渐变
+		
+		offset	设置渐变的开始和结束颜色距离渐变两端的距离。使用渐变的百分比值来设置。例如，10%表示渐变进入图形内部10%的距离
+		stop-color	渐变停止点的颜色
+		stop-opacity	该渐变停止点的颜色透明度。
+	f、滤镜
+		SVG高斯模糊滤镜可以将图像进行模糊处理。要使用高斯模糊滤镜，可以使用<feGaussianBlur>元素
+		偏移滤镜会将输入图形进行移动之后作为结果输出。你可以使用它来上下左右移动图形。通常偏移滤镜都是用于制作drop阴影效果。dx相对于x方向上的位移，dy相对于Y轴上的位移
+		
+		feBlend - 与图像相结合的滤镜
+		feColorMatrix - 用于彩色滤光片转换
+		feComponentTransfer
+		feComposite
+		feConvolveMatrix
+		feDiffuseLighting
+		feDisplacementMap
+		feFlood
+		feGaussianBlur
+		feImage
+		feMerge
+		feMorphology
+		feOffset - 过滤阴影
+		feSpecularLighting
+		feTile
+		feTurbulence
+		feDistantLight - 用于照明过滤
+		fePointLight - 用于照明过滤
+		feSpotLight - 用于照明过滤
+		

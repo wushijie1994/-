@@ -1,0 +1,93 @@
+1、常见的标签
+<abbr> ：定义缩写
+<address>：标签定义文档作者/所有者的联系信息。
+<b>：定义粗体文本。
+<cite> 标签定义作品（比如书籍、歌曲、电影、电视节目、绘画、雕塑等等）的标题。
+<em>	定义强调文本。
+<i>	定义斜体文本。
+<s> 标签对那些不正确、不准确或者没有用的文本进行标识。
+<small>	定义小号文本。
+<strong>	定义语气更为强烈的强调文本。
+<sub>	定义下标文本。
+<sup>	定义上标文本。
+<form>	定义一个 HTML 表单，用于用户输入。
+<select> 元素用来创建下拉列表。
+<optgroup> 标签经常用于把相关的选项组合在一起。
+<option>	定义选择列表中的选项。
+<fieldset> 标签可以将表单内的相关元素分组, 标签会在相关表单元素周围绘制边框。
+<legend>	定义 fieldset 元素的标题。
+<map> 标签用于客户端图像映射。图像映射指带有可点击区域的一幅图像。
+<area>	定义图像地图内部的区域。
+
+<td> 标签定义 HTML 表格中的标准单元格。
+        colspan	number	规定单元格可横跨的列数。
+        rowspan	number	设置单元格可横跨的行数。
+<caption> 标签定义表格的标题。
+<tfoot> 标签用于组合 HTML 表格的页脚内容。
+<colgroup> 标签用于对表格中的列进行组合，以便对其进行格式化。
+<col> 标签规定了 <colgroup> 元素内部的每一列的列属性。
+
+2、html5
+<nav><header><footer><ariticle><aside>
+
+<mark> 标签定义带有记号的文本。
+<meter> 标签定义度量衡。仅用于已知最大和最小值的度量。（类似进度条的效果），IE不支持
+        <meter value="2" min="0" max="10">2 out of 10</meter><br>
+        <meter value="0.6">60%</meter>
+<progress> 标签定义运行中的任务进度（进程）。（IE10+）
+<time> 标签定义公历的时间（24 小时制）或日期，时间和时区偏移是可选的。
+<input>
+<datalist>	规定了 input 元素可能的选项列表。(IE10+),类似select
+<keygen> 标签规定用于表单的密钥对生成器字段。(IE不支持)
+<output> 标签作为计算结果输出显示(比如执行脚本的输出)。(IE不支持)
+<canvas> 标签通过脚本（通常是 JavaScript）来绘制图形（比如图表和其他图像）
+<figure> 元素标记文档中的一个图像
+<figcaption> 标签为 <figure> 元素定义标题
+
+<audio> 标签定义声音，比如音乐或其他音频流
+        autoplay    autoplay	            如果出现该属性，则音频在就绪后马上播放。
+        controls	controls	            如果出现该属性，则向用户显示音频控件（比如播放/暂停按钮）。
+        loop	    loop	                如果出现该属性，则每当音频结束时重新开始播放。
+        muted	    muted	                如果出现该属性，则音频输出为静音。
+        preload	    auto、metadata、none	规定当网页加载时，音频是否默认被加载以及如何被加载。
+        src	        URL	                    规定音频文件的 URL。
+<video> 标签定义视频，比如电影片段或其他视频流
+        autoplay	autoplay	            如果出现该属性，则视频在就绪后马上播放。
+        controls	controls	            如果出现该属性，则向用户显示控件，比如播放按钮。
+        height	    pixels	                设置视频播放器的高度。
+        loop	    loop	                如果出现该属性，则当媒介文件完成播放后再次开始播放。
+        muted	    muted	                如果出现该属性，视频的音频输出为静音。
+        poster      URL	                    规定视频正在下载时显示的图像，直到用户点击播放按钮。
+        preload	    auto、metadata、none	如果出现该属性，则视频在页面加载时进行加载，并预备播放。如果使用 "autoplay"，则忽略该属性。
+        src	        URL	                    要播放的视频的 URL。
+        width	    pixels	                设置视频播放器的宽度。
+<source> 标签为媒体元素（比如 <video> 和 <audio>）定义媒体资源
+        media	    media_query	            规定媒体资源的类型，供浏览器决定是否下载。
+        src	        URL	                    规定媒体文件的 URL。
+        type	    MIME_type	            规定媒体资源的 MIME 类型。
+<track> 标签为媒体元素（比如 <audio> and <video>）规定外部文本轨道，这个元素用于规定字幕文件或其他包含文本的文件，当媒体播放时，这些文件是可见的。
+        default	    default	                规定该轨道是默认的。如果用户没有选择任何轨道，则使用默认轨道。
+        kind	    captions、chapters、descriptions、metadata、subtitles	规定文本轨道的文本类型。
+        label	    text	                规定文本轨道的标签和标题。
+        src	        URL	                    必需的。规定轨道文件的 URL。
+        srclang	    language_code	        规定轨道文本数据的语言。如果 kind 属性值是 "subtitles"，则该属性是必需的。
+
+<details>定义了用户可见的或者隐藏的需求的补充细节。(只有chrome，Safari 6 支持)
+<summary> 标签为 <details> 元素定义一个可见的标题。 当用户点击标题时会显示出详细信息。
+<dialog> 标签定义一个对话框、确认框或窗口。(只有chrome，Safari 6 支持)
+
+3、不常见的标签
+<bdo>：用来覆盖默认的文本方向。dir=ltr，rtl
+<blockquote> 标签定义摘自另一个源的块引用。
+<code>：定义计算机代码文本。
+<del> 标签定义文档中已删除的文本。
+<dfn> 标签是一个短语标签，用来定义一个定义项目。
+<ins>	定义被插入文本。
+<kbd>	定义键盘文本。
+<pre> 标签可定义预格式化的文本。
+<q> 标签定义一个短的引用。
+
+4、不推荐使用的标签
+<samp> 标签是一个短语标签，用来定义计算机程序的样本文本。
+<var> 标签是一个短语标签，用来定义变量。
+

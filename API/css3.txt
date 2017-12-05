@@ -1,0 +1,85 @@
+1、css动画
+    @keyframes	                定义一个动画,@keyframes定义的动画名称用来被animation-name所使用。	
+    animation	                复合属性。检索或设置对象所应用的动画特效。(animation:move 5s infinite 2s  false)
+    animation-name	            检索或设置对象所应用的动画名称 ,必须与规则@keyframes配合使用，因为动画名称由@keyframes定义	
+    animation-duration	        检索或设置对象动画的持续时间	
+    animation-timing-function	检索或设置对象动画的过渡类型
+    	linear	                动画从头到尾的速度是相同的。
+        ease	                默认。动画以低速开始，然后加快，在结束前变慢。
+        ease-in	                动画以低速开始。
+        ease-out	            动画以低速结束。
+        ease-in-out	            动画以低速开始和结束。
+        cubic-bezier(n,n,n,n)	在 cubic-bezier 函数中自己的值。可能的值是从 0 到 1 的数值。
+    animation-delay         	检索或设置对象动画的延迟时间	
+    animation-iteration-count	检索或设置对象动画的循环次数	infinite
+    animation-direction         检索或设置对象动画在循环中是否反向运动
+        normal	                动画按正常播放。
+        reverse                 动画反向播放。
+        alternate	            动画在奇数次（1、、5...）正向播放，在偶数次（2、4、6...）反向播放。
+        alternate-reverse	    动画在奇数次（1、、5...）反向播放，在偶数次（2、4、6...）正向播放。
+        initial         	    设置该属性为它的默认值
+        inherit	                从父元素继承该属性
+    animation-play-state	    检索或设置对象动画的状态(paused,running)
+
+2、过渡
+    transition	                此属性是 transition-property、transition-duration、transition-timing-function、transition-delay 的简写形式。
+    transition-property	        设置用来进行过渡的 CSS 属性。
+    transition-duration     	设置过渡进行的时间长度。
+    transition-timing-function	设置过渡进行的时序函数。	
+    transition-delay	        指定过渡开始的时间。
+
+3、2D/3D 转换属性
+    transform	适用于2D或3D转换的元素
+        none	                                    定义不进行转换。
+        matrix(n,n,n,n,n,n)	                        定义 2D 转换，使用六个值的矩阵。
+        matrix3d(n,n,n,n,n,n,n,n,n,n,n,n,n,n,n,n)	定义 3D 转换，使用 16 个值的 4x4 矩阵。
+        translate(x,y)	                            定义 2D 转换。
+        translate3d(x,y,z)	                        定义 3D 转换。
+        translateX(x)	                            定义转换，只是用 X 轴的值。
+        translateY(y)	                            定义转换，只是用 Y 轴的值。
+        translateZ(z)	                            定义 3D 转换，只是用 Z 轴的值。
+        scale(x[,y]?)	                            定义 2D 缩放转换。
+        scale3d(x,y,z)	                            定义 3D 缩放转换。
+        scaleX(x)	                                通过设置 X 轴的值来定义缩放转换。
+        scaleY(y)	                                通过设置 Y 轴的值来定义缩放转换。
+        scaleZ(z)	                                通过设置 Z 轴的值来定义 3D 缩放转换。
+        rotate(angle)	                            定义 2D 旋转，在参数中规定角度。rotate(45deg)
+        rotate3d(x,y,z,angle)	                    定义 3D 旋转。
+        rotateX(angle)	                            定义沿着 X 轴的 3D 旋转。
+        rotateY(angle)	                            定义沿着 Y 轴的 3D 旋转。
+        rotateZ(angle)	                            定义沿着 Z 轴的 3D 旋转。
+        skew(x-angle,y-angle)	                    定义沿着 X 和 Y 轴的 2D 倾斜转换。
+        skewX(angle)	                            定义沿着 X 轴的 2D 倾斜转换。
+        skewY(angle)	                            定义沿着 Y 轴的 2D 倾斜转换。
+        perspective(n)	                            为 3D 转换元素定义透视视图。
+    transform-origin	允许您更改转化元素位置
+    transform-style	3D空间中的指定如何嵌套元素
+    perspective	指定3D元素是如何查看透视图
+    perspective-origin	指定3D元素底部位置
+    backface-visibility	定义一个元素是否应该是可见的，不对着屏幕时
+
+4、背景
+    background-clip: border-box|padding-box|content-box;指定背景绘制区域，类似box-sizing（IE11+）
+    background-origin: padding-box|border-box|content-box;指定background-position属性应该是相对位置
+    background-size: length|percentage|cover|contain;
+
+5、边框
+    border-image: source slice width outset repeat;（IE11）
+    border-radius
+    box-shadow
+
+6、盒模型
+    overflow-x，overflow-y
+
+7、多列
+    column-count 指定某个元素应分为的列数（IE10）
+    column-gap: length|normal;指定列之间的差距
+    column-rule属性是一个速记属性设置所有column-rule-*属性，设置列之间的宽度，样式和颜色。
+    column-span: 1|all 指定某个元素应该跨越多少列
+    column-width: auto|length 指定列的宽度
+    columns: column-width column-count 一个速记属性设置列宽和列数
+
+8、渐变
+    background-image: linear-gradient(0deg,red,orange,blue);线性渐变
+    radial-gradient：放射性渐变
+        radial-gradient(circle at top,#fff,green,black);

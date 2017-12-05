@@ -1,0 +1,48 @@
+1、vue的基本创建
+	new Vue({
+		el: "#vue",
+		data: {},
+		methods:{},
+		computed:{},//对数据进行处理
+		watch:{},//监听数据（很有用）
+	})
+
+2、钩子函数：（当数据改变时会执行update函数，初始化时会意字执行create+mounted方法）
+	beforeCreate: 创建 vnode 前
+	created: 创建 vnode完成后
+	beforeMount: 插入到真实dom前
+	mounted: 插入到真实dom后
+	beforeUpdate: 更新前
+	updated: 更新后
+	activated:keep-alive组件激活时调用
+	deactivated:keep-alive组件停用时时调用
+	beforeDestory:销毁前
+	destoryed: 销毁完成后		
+	
+3、指令
+	v-text
+	v-html
+	v-show
+	v-if
+	v-else
+	v-else-if
+	v-for
+	v-on==@(v-on:click @click)	
+	v-bind=:(v-bind:class="class1" :class="class1")
+	v-model
+	v-pre:跳过当前元素的编译
+	v-cloak：这个指令保持在元素上直到关联实例结束编译。
+	v-once
+	
+4、过滤器
+	(1)全局方法 Vue.filter() 注册一个自定义过滤器,必须放在Vue实例化前面 
+	(2)过滤器现在只能用在两个地方：mustache 插值和 v-bind 表达式。（v2.0）
+
+5、vue的bug
+    a、在初始化vue的时候，因为没有数据，所以导致页面上的dom结构没有生成，所以这个时候绑定事件，绑定不上；因为第一次渲染没有数据报错，紧跟着的事件就没用了，后面请求到数据，页面就被渲染了
+    b、vue的数据没有找到的报错，其实是可以解决的，加上v-if就可以了，保证页面在存在数据的时候才渲染
+	
+	
+	
+
+	

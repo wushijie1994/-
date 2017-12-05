@@ -1,0 +1,4 @@
+开发人员仅仅需要修改 config.js
+    1.serverlUrl对象，将后后台路径写好就行，
+    2.isDebug  参数填写为 false
+    3.showLog  参数写为 false

@@ -1,0 +1,120 @@
+Snap():绘制一个面或者包裹一个已经存在的SVG元素 -->_scope.svg=Snap('100%','100%');
+paper:获取画布 -->_scope.svg.paper;
+
+一、绘制元素
+    1、Paper.circle(cx, cy, r)
+    2、Paper.el(name, attr)
+        name 字符串。标签名。
+        attr 对象。表属性。
+    3、Paper.ellipse(cx, cy, rx, ry)
+    4、Paper.filter(filstr)：创建一个滤镜元素
+        filstr 滤镜相关的SVG字符串片段。
+        filter= svg.paper.filter('<feGaussianBlur stdDeviation="2"/>');
+    5、Paper.g([varargs])，Paper.group()：创建元素组
+        varargs 要组队的小伙伴们。
+    6、Paper.gradient(gradient)：创建一个渐变元素
+        gradient 字符串，渐变描述符
+        var g1 = svg.paper.gradient("l(0, 0, 1, 1)#000-#f00-#fff");
+    7、Paper.image(src, x, y, width, height)
+    8、Paper.line(x1, y1, x2, y2)
+    9、Paper.path([pathString])
+    10、Paper.polygon(),Paper.polyline(points)
+        points 数组,点坐标数组
+    11、Paper.rect(x, y, width, height, [rx], [ry])
+    12、Paper.text(x, y, text)
+
+二、元素操作
+    1、节点操作：
+       Element.clone()
+       Element.parent()
+       Element.select(query)
+       Element.select(query)
+       Element.add()
+       Element.append(el)
+       Element.before(el)
+       Element.insertAfter(el)
+       Element.after(el)：el到Element的后面
+       Element.insertAfter(el)
+       Element.prepend(el)
+       Element.remove(handler)
+
+    2、节点事件
+       Element.click(handler)
+       Element.dblclick(handler)
+       Element.drag(onmove, onstart, onend, [mcontext], [scontext], [econtext])
+       Element.hover(f_in, f_out, [icontext], [ocontext])
+       Element.mousedown(handler)
+       Element.mousedown(handler)
+       Element.mouseout(handler)
+       Element.mouseover(handler)
+       Element.mouseup(handler)
+       Element.touchcancel(handler)
+       Element.touchend(handler)
+       Element.touchmove(handler)
+       Element.touchstart(handler)
+
+    3、常用方法：
+       Element.data(key, [value])：类似jQuery中的data, 数据存储与获取
+       Element.removeData([key])
+       Element.getBBox()：返回给定元素的边界框描述。
+       Element.getPointAtLength(length)：返回给定路径上给定长度的点坐标（仅适用于path元素）
+       Element.getSubpath(from, to)：返回给定元素上指定起始结束长度上的子路径（仅适用于path元素）
+       Element.getTotalLength()：以像素为单位，返回路径的长度（仅适用于path元素）
+       Element.attr()
+
+
+    4、其他方法
+       Element.asPX(attr, [value])：返回元素给定的属性。
+       Element.inAnim()：返回可能操纵当前元素的一组动画。
+       Element.marker(x, y, width, height, refX, refY)：利用当前元素创建一个<marker>元素
+               x 数值。创建的标记元素的x位置。
+               y 数值。创建的标记元素的y位置。
+               width 数值。创建的标记元素的高度。
+               height 数值。创建的标记元素的宽度。
+               refX 数值。参考点的x位置。也就是<marker>内部的坐标。以后会作为路径的起止点等。
+               refY 数值。参考点的y位置。
+       Element.toDefs()：把元素移动到<defs>区域
+       Element.transform(tstr)：获取或设置元素的转变
+       Element.use()：创建一个<use>元素连接到当前元素
+
+    5、动画
+       Element.animate(attrs, duration, [easing], [callback])
+       Element.stop()
+
+三、snap操作
+    1、Snap.angle(x1, y1, x2, y2, [x3], [y3])：返回2个或3个点之间的角度
+    2、Snap.ajax(…)
+    3、Snap.animate(from, to, setter, duration, [easing], [callback])
+        from 数值或数组。动画起始数值或数值数组。
+        to 数值或数组。动画结束数值或数值数组。
+        setter 函数。接受一个数值参数的贴心函数。
+        duration 数值。动画持续时间，单位是毫秒。
+        easing 函数。来自mina或自定义的缓动函数。
+        callback 函数。动画结束时候执行的回调函数。
+     4、Snap.animation(attr, duration, [easing], [callback])
+        attr 对象。最终目标的属性。
+        duration 数值。动画持续的时间，单位为毫秒。
+        easing 函数。mina或自定义的缓动函数。
+        callback 函数。动画结束的时候执行的回调函数。
+     5、Snap.color(clr)：解析颜色字符串，并返回一个颗粒分解的色彩值的对象
+     6、Snap.deg(rad)转换弧度为角度
+     7、Snap.fragment(varargs)根据给定的元素列表或字符串创建DOM片段。
+     8、Snap.getElementByPoint(x, y)返回给定点最上面一个元素。
+     9、Snap.load(url, callback, [scope])加载外部的SVG文件作为文档片段。
+
+四、snap.path
+    1、Snap.path.intersection(path1, path2)查找两条路径的相交
+    2、Snap.path.isBBoxIntersect(bbox1, bbox2)两个盒子是否相交。如果相交则返回true.
+    3、Snap.path.isPointInside(path, x, y)给定的点是否在闭合路径的内部。
+    4、Snap.path.isPointInsideBBox(bbox, x, y)给定的点是否在盒子的内部。
+
+五、缓动类型
+    mina.backin
+    mina.backout
+    mina.bounce
+    mina.easein
+    mina.easeinout
+    mina.easeout
+    mina.elastic
+    mina.linear
+

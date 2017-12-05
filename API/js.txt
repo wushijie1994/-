@@ -1,0 +1,44 @@
+1、运算符
+    typeof:返回操作数的数据类型
+        返回：number,boolean,string,function,object,undefined
+        eg：typeof num=='number'
+    instanceof：判断对象是否是指定的对象类型
+        number,string是个意外
+
+2、数据类型转换
+    parseInt(),parseFloat(),eval()
+
+3、数组操作
+    concat()：将两个数组合并为一个新的数组
+    join()，push()，pop()，shift()，unshift()
+    sort()
+    reverse()颠倒数组中的所有元素
+    slice(start,end):截取数组，所提取元素的下标从start开始，到end结束，但不包括end
+    splice(start,delteCount,value...)从start指定的位置开始，删除delteCount个数组元素，然后在删除位置前面添加于value值个数相同的数组元素，并以此将其值设置为value参数指定的值
+
+4、Math对象
+    Math.abs():绝对值
+    Math.ceil（）：向上取整
+    Math.floor（）：向下取整
+    Math.max（），Math.min()，Math.pow（x,y）
+    Math.radom()
+    Math.round(x):四舍五入
+    acos,asin,atan,atan2,cos,sin,tan
+
+5、date对象
+    getDate(),getDay(),getFullYear(),getMilliseconds(),getMinutes(),getSeconds(),getTime()
+
+6、String对象
+    charAt(n)
+    charCodeAt(n),
+    concat(value,...),
+    indexOf(subString,start)
+    lastIndexOf(subString,start)
+    search(regexp)	返回与regexp匹配的第一个字符串的开始位置。如果都不匹配，则返回-1
+    slice(start,end)
+    split(delimiter):以delimiter为分隔符，将字符串拆分到一个字符串数组中
+    substring(from,to)
+    substr(start,length)
+    replace(regexp,replacement)使用replacement替换字符串中regexp指定的内容，并返回替换后的结果。regexp可以是正则表达式，也可以是一般文本
+    toLowerCase()
+    toUpperCase()

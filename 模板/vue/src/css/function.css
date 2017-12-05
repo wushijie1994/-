@@ -1,0 +1,230 @@
+@charset "utf-8";
+/**
+* @version:	 		    2016.11.01
+* @createTime: 	 		2016.11.23
+* @updateTime: 			2016.11.23
+* @author:				wuwg
+* @name:  				function
+* @description          function   style，这里全部是功能性命名，全部严格按照这个执行
+*/
+/**
+* 状态名字 ，请严格按照这个执行，此类状态名字不需要增加前缀fd-，以下就  disabled 可单独使用，其他的禁止单独使用
+* hover
+* visited
+* waring
+* default
+* current
+* selected
+* disabled
+* focus
+* blur
+* checked
+* success
+* error
+* active
+* disabled
+*/
+.disabled {
+  cursor: default !important;
+  opacity: 0.6 ;
+  pointer-events: none ;
+  text-decoration: none !important;
+}
+.disabled:hover {
+  text-decoration: none !important;
+}
+/***********************************************************
+
+                    type   float  clear
+
+***********************************************************/
+.fd-fl {
+  float: left;
+}
+.fd-fr {
+  float: right;
+}
+.fd-clearfix,
+.fd-row,
+.fd-section {
+  zoom: 1;
+}
+.fd-clearfix:after,
+.fd-row:after,
+.fd-section:after {
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  content: ".";
+}
+/***********************************************************
+
+                    type   block  change
+
+***********************************************************/
+.fd-inline {
+  display: inline;
+}
+.fd-block {
+  display: block;
+}
+.fd-inline-block {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+/***********************************************************
+
+                    type   visivible
+
+***********************************************************/
+.fd-hide {
+  display: none;
+}
+.fd-show {
+  display: block;
+}
+.fd-hidden {
+  visibility: hidden;
+}
+.fd-visible {
+  visibility: visible;
+}
+.fd-opacity0 {
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+.fd-opacity1 {
+  filter: alpha(opacity=1);
+  opacity: 1;
+}
+/***********************************************************
+
+                    type   overflow
+
+***********************************************************/
+.fd-ovh {
+  overflow: hidden;
+}
+.fd-ovhy {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.fd-ovhx {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+/***********************************************************
+
+							type:	position
+
+************************************************************/
+.fd-posr {
+  position: relative;
+}
+.fd-posa {
+  position: absolute;
+}
+.fd-posf {
+  position: fixed;
+}
+/***********************************************************
+
+							type:	font
+
+************************************************************/
+.fd-fwn {
+  font-weight: normal;
+}
+.fd-fwb {
+  font-weight: bold;
+}
+/***********************************************************
+
+                    type   text
+
+***********************************************************/
+.fd-ti2 {
+  text-indent: 2em;
+}
+/*文本缩进2em*/
+.fd-text-hide {
+  text-indent: -9999em;
+  /*font: 0/0 SimSun;*/
+  font-size: 0;
+  line-height: 0;
+  font-family: SimSun;
+}
+/*文本隐藏*/
+.fd-text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/*文本出现...*/
+.fd-wwb {
+  white-space: normal;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+/*文本自动换行*/
+.fd-wsn {
+  word-wrap: normal;
+  white-space: nowrap;
+}
+/*文本不换行*/
+.fd-usn {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+/*取消文字选中*/
+/***********************************************************
+
+                    type   align
+
+***********************************************************/
+.fd-tal {
+  text-align: left;
+}
+.fd-tac {
+  text-align: center;
+}
+.fd-tar {
+  text-align: right;
+}
+.fd-vam {
+  vertical-align: middle;
+}
+.fd-vat {
+  vertical-align: top;
+}
+.fd-vab {
+  vertical-align: bottom;
+}
+.fd-taj {
+  text-align: justify;
+  text-justify: inter-ideograph;
+}
+/*css3 仅ie支持*/
+/***********************************************************
+
+                    type   cursor
+
+***********************************************************/
+.fd-curd {
+  cursor: default;
+}
+.fd-curp {
+  cursor: pointer;
+}
+.fd-curm {
+  cursor: move;
+}
+.fd-curh {
+  cursor: help;
+}

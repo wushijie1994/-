@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    html,body{
+        height:100%;
+    }
+    div{
+        float: left;
+        width:100px;
+        height:100px;
+        margin: 10px;
+        border-radius: 50%;
+    }
+    hr{
+        clear: both;
+    }
+    .rg1{
+        background-image: radial-gradient(circle at top,#fff,green,black);
+    }
+    .rg2{
+        background-image:radial-gradient(circle at left top,#fff 10%,#ccc 30%,#000 60%,#555 80%,#888 100%);
+    }
+    .rg3{
+        background-image:radial-gradient(circle at 300px 50px,#1DDEE9,#F13464)
+    }
+    .rg4{
+        background-image: radial-gradient(circle at 25% 35%,pink,#31A4A4,rgba(255,255,255,0.5));
+    }
+    .rg5{
+        background-image:radial-gradient(ellipse 20px 50px,yellow,green)
+    }
+    .rg6{
+        background-image:radial-gradient(30px,yellow,green,#333)
+    }
+</style>
+<body>
+<div class="rg1"></div>
+<div class="rg2"></div>
+<div class="rg3"></div>
+<div class="rg4"></div>
+<hr/>
+<div class="rg5"></div>
+<div class="rg6"></div>
+</body>
+</html>

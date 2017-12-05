@@ -1,0 +1,178 @@
+一、选择器
+    1、基本赛选器
+        :first
+        :not(selector),可以先选出来，然后在排除
+        :even
+        :odd
+        :eq(index)
+        :gt(index)
+        :lang1.9+
+        :last
+        :lt(index)
+        :header
+        :animated
+        :focus
+        :root1.9+
+        :target1.9+
+    2、内容(注意是内容，所以找的是当前元素的子元素)
+        :contains(text)
+        :empty
+        :has(selector)
+        :parent(选择当前元素作为父元素的元素，与empty相对)
+    3、可见性(针对的是display属性)
+        :hidden
+        :visible
+    4、属性
+        [attribute]
+        [attribute=value]
+        [attribute!=value]
+        [attribute^=value]
+        [attribute$=value]
+        [attribute*=value]
+        [attrSel1][attrSel2][attrSelN]
+    5、子元素
+        :first-child
+        :first-of-type1.9+
+        :last-child
+        :last-of-type1.9+
+        :nth-child
+        :nth-last-child()1.9+
+        :nth-last-of-type()1.9+
+        :nth-of-type()1.9+
+        :only-child
+        :only-of-type1.9+
+
+二、核心函数
+    1、常用方法
+        ele.each()
+        ele.length
+        ele.get(index)
+        ele.selector()
+        ele.index('selector')
+        ele.data()
+        ele.removeDatta()
+    2、插件编写
+        $.fn.extend
+        $.extend()
+
+三、工具
+    1、浏览器检及特性测
+        $.support
+    2、数组对象操作
+        $.each(obj,[callback])
+        $.map(arr|obj,callback):将一个数组中的元素转换到另一个数组中(余each的区别在于，这个函数会改变arr的值)
+        $.extend([deep],target,obj1,[objN]):用一个或多个其他对象来扩展一个对象，返回被扩展的对象。
+        $.grep(array,callback,[invert]):使用过滤函数过滤数组元素。此函数至少传递两个参数：待过滤数组和过滤函数。过滤函数必须返回 true 以保留元素或 false 以删除元素。
+        $.when():提供一种方法来执行一个或多个对象的回调函数，延迟对象通常表示异步事件。(感觉没用)
+        $.makearray(obj):将类数组对象转换为数组对象。(感觉没用)
+        $.inArray(val,arr,[from])确定第一个参数在数组中的位置，从0开始计数(如果没有找到则返回 -1 )。
+        $.toArray()把jQuery集合中所有DOM元素恢复成一个数组。
+        $.merge(first,second)合并两个数组,返回的结果会修改第一个数组的内容——第一个数组的元素后面跟着第二个数组的元素。
+        $.uniqueSort(array)通过搜索的数组对象，排序数组，并移除任何重复的节点。只适用于普通的JavaScript DOM元素的数组
+    3、测试操作
+        $.contains(c,c)一个DOM节点是否包含另一个DOM节点。
+            jQuery.contains(document.documentElement, document.body); // true
+        $.type(obj)
+            boolean、number、string、function、array、date、regexp
+        $.isFunction(obj)测试对象是否为函数。
+        $.isEmptyObject(obj)测试对象是否是空对象（不包含任何属性）
+        $.isPlainObject(obj)测试对象是否是纯粹的对象（通过 "{}" 或者 "new Object" 创建的）
+        $.isNumeric(value)确定它的参数是否是一个数字。
+    4、字符串操作
+        $.trim()去掉字符串首尾的空格
+    5、参数传递
+         $.param(obj,[traditional])将表单元素数组或者对象序列化
+     6、插件方法
+        $.error(message)接受一个字符串，并且直接抛出一个包含这个字符串的异常。
+        $.fn.jquery取得页面上当前使用的 jQuery 的版本号
+
+四、ajax
+    1、ajax（）
+        属性：
+            dataType：（XML，还可以指定 html、json、jsonp、script或者text）
+            async：(默认: true) 默认设置下，所有请求均为异步请求
+            cache：是否缓存页面
+            data：发送到服务器的数据
+            type：(默认: "GET") 请求方式 ("POST" 或 "GET")
+            url：(默认: 当前页地址) 发送请求的地址。
+        回调函数
+            beforeSend ，error，success ，complete
+            dataFilter 在请求成功之后调用。传入返回的数据以及"dataType"参数的值。并且必须返回新的数据（可能是处理过的）传递给success回调函数。
+    2、$.get(url,[data],[fn],[type])
+    3、$.getJSON(url,[data],[fn])
+    4、$.getScript(url,[callback])
+    5、$.post(url,[data],[fn],[type])
+    6、ajax事件:$(document).ajaxSuccess()监听document上面的ajax事件
+        ajaxComplete(callback)AJAX 请求完成时执行函数
+        ajaxError(callback)
+            function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+                  this; // 监听的 dom 元素
+            }
+        ajaxSend(callback)AJAX 请求发送前执行函数
+        ajaxStart(callback)AJAX 请求开始时执行函数
+        ajaxStop(callback)AJAX 请求结束时执行函数
+        ajaxSuccess(callback)AJAX 请求成功时执行函数
+
+五、效果
+    show(),hide(),toggle()
+    slideDown(),slideUp(),slideToggle()
+    fadeIn(),fadeOut(),fadeTo(),fadeToggle()
+    animate(p,[s],[e],[fn])
+    stop([c],[j])
+    finish([queue])停止当前正在运行的动画，删除所有排队的动画，并完成匹配元素所有的动画。
+    delay(d,[q])设置一个延时来推迟执行队列中之后的项目。
+
+六、筛选
+    1、过滤(针对的都是jq对象)
+        eq(index|-index)
+        first()
+        last()
+        hasClass(class)检查当前的元素是否含有某个特定的类，如果有，则返回true。
+        filter(expr|obj|ele|fn)
+        is(expr|obj|ele|fn)根据选择器、DOM元素或 jQuery 对象来检测匹配元素集合，如果其中至少有一个元素符合这个给定的表达式就返回true。
+        map(callback)
+        has(expr|ele)
+        not(expr|ele|fn)
+        slice(start,[end])
+    2、查找
+        children([expr]),find(),next(),nextAll(),nextUntill(),parent(),parents(),parentsUntill(),prev(),prevAll(),prevUntill(),siblings()
+        end()
+
+六、css
+    offset(),position(),scrollTop(),scrollLeft()
+
+七、事件
+    1、事件处理
+        on(eve,[sel],[data],fn):在选择元素上绑定一个或多个事件的事件处理函数。
+        off(eve,[sel],[fn])在选择元素上移除一个或多个事件的事件处理函数。
+        one(type,[data],fn)为每一个匹配元素的特定事件（像click）绑定一个一次性的事件处理函数。
+        trigger(type,[data])在每一个匹配的元素上触发某类事件
+        triggerHandler(type, [data])这个特别的方法将会触发指定的事件类型上所有绑定的处理函数。但不会执行浏览器默认动作，也不会产生事件冒泡。
+    2、事件
+    hover
+    blur([[data],fn])
+    change([[data],fn])
+    click([[data],fn])
+    dblclick([[data],fn])
+    error([[data],fn])
+    focus([[data],fn])
+    focusin([data],fn)
+    focusout([data],fn)
+    keydown([[data],fn])
+    keypress([[data],fn])
+    keyup([[data],fn])
+    mousedown([[data],fn])
+    mouseenter([[data],fn])
+    mouseleave([[data],fn])
+    mousemove([[data],fn])
+    mouseout([[data],fn])
+    mouseover([[data],fn])
+    mouseup([[data],fn])
+    resize([[data],fn])
+    scroll([[data],fn])
+    select([[data],fn])
+    submit([[data],fn])
+    unload([[data],fn])
+
+
+

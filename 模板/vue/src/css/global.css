@@ -1,0 +1,51 @@
+@charset "utf-8";
+/**
+* @version:	 		    2017.08.21
+* @createTime: 	 		2017.08.21
+* @updateTime: 			2017.08.21
+* @author:				wusj
+* @name:  				global
+* @description          global ，这里全部可复用的样式，按照分类来， 名字以数子增长顺序增加， 可标明在哪个地方用到了
+ */
+/****************************
+
+            页面框架
+
+****************************/
+html,body{
+  height:100%;
+  width: 100%;
+}
+body{
+  overflow: hidden;
+}
+/*布局样式*/
+.fd-mainBody{
+  position: relative;
+  height: 100%;
+  width:100%;
+}
+.fd-layOutLeft{
+  position: absolute;
+  top:0;
+  left:0;
+  height:100%;
+}
+.fd-layOutRight{
+  position: absolute;
+  top:0;
+  right:0;
+  height:100%;
+}
+.fd-layOutTop{
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+}
+.fd-layOutBottom{
+  position: absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+}

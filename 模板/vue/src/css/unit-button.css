@@ -1,0 +1,28 @@
+@charset "utf-8";
+/**
+* @version:	 		    2017.08.21
+* @createTime: 	 		2017.08.21
+* @updateTime: 			2017.08.21
+* @author:				wusj
+* @name:  				button
+* @description          button ，按钮样式
+ */
+.fd-btn {
+    position: relative;
+    display: inline-block;
+    width:95px;
+    height:28px;
+    font-weight: normal;
+    color: #00acff;
+    font: 14px/28px "microsoft yahei";
+    text-align: center;
+    border:1px solid #00abfb;
+    background: #001d68;
+    box-shadow: 0 0 6px rgba(4,240,255,.3);
+    cursor: pointer;
+    transition: background 0.3s 0s  linear;
+}
+.fd-btn:hover{
+    color: #fff;
+    background: #00abfb;
+}
